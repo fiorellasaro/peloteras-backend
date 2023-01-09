@@ -7,6 +7,7 @@ export interface IEvent {
   cost: string;
   quota: string;
   email: string;
+  
 }
 
 export const CreateEventSchema = yup.object().shape({
