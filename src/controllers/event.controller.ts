@@ -1,9 +1,9 @@
 import { Response, Request, NextFunction } from "express";
 import Event from "../models/event.model";
-import { CreateEventType } from "../schema/event.schema";
+import { IEvent } from "../schema/event.schema";
 
 export const createEvent = async (
-  req: Request<unknown, unknown, CreateEventType>,
+  req: Request<unknown, unknown, IEvent>,
   res: Response,
   next: NextFunction
 ) => {

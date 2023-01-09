@@ -1,15 +1,19 @@
+import * as yup from 'yup';
 
-import { z } from "zod";
+export interface IEvent {
+  location: string;
+  date: string;
+  hour: string;
+  cost: string;
+  quota: string;
+  email: string;
+}
 
-export const CreateEventSchema = z.object({
-  body: z.object({
-    location: z.string().nonempty(),
-    date: z.string().nonempty(),
-    hour: z.string().nonempty(),
-    cost: z.number().nonnegative(),
-    quota: z.number().nonnegative(),
-    email: z.string().email(),
-  }),
-});
-
-export type CreateEventType = z.infer<typeof CreateEventSchema>["body"];
+export const CreateEventSchema = yup.object().shape({
+  location: yup.string().required(),
+  date: yup.string().required(),
+  hour: yup.string().required(),
+  cost: yup.string().required(),
+  quota: yup.string().required(),
+  email: yup.string().required(),
+}) as yup.SchemaOf<IEvent>;
