@@ -14,13 +14,11 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const app_1 = __importDefault(require("./app"));
 const database_1 = require("./database");
-const config_1 = __importDefault(require("./config/config"));
-const PORT = config_1.default.PORT || 4000;
+const PORT = 4000;
 function main() {
     return __awaiter(this, void 0, void 0, function* () {
         yield (0, database_1.connectDB)();
         app_1.default.listen(PORT);
-        console.log("Server on port ", PORT);
     });
 }
 main();
