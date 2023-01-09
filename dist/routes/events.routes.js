@@ -9,3 +9,4 @@ router.post("/events", event_controller_1.createEvent);
 router.delete("/events/:id", event_controller_1.deleteEvent);
 router.put("/events/:id", event_controller_1.updateEvent);
 exports.default = router;
+//# sourceMappingURL=events.routes.js.map

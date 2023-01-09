@@ -8,3 +8,4 @@ exports.default = {
         URI: process.env.MONGODB_URI,
     },
 };
+//# sourceMappingURL=config.js.map

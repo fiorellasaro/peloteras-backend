@@ -27,3 +27,4 @@ function connectDB() {
     });
 }
 exports.connectDB = connectDB;
+//# sourceMappingURL=database.js.map

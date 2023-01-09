@@ -12,3 +12,4 @@ exports.CreateEventSchema = zod_1.z.object({
         email: zod_1.z.string().email(),
     }),
 });
+//# sourceMappingURL=event.schema.js.map

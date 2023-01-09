@@ -29,3 +29,4 @@ app.use((error, req, res, next) => {
     });
 });
 exports.default = app;
+//# sourceMappingURL=app.js.map
