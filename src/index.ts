@@ -1,12 +1,26 @@
 import app from "./app";
 import { connectDB } from "./database";
-import config from "./config/config";
-
+import cors from "cors";
+import router from "./routes/events.routes";
 const PORT = 4000;
 
-async function main() {
+app.use(async (req, res, next) => {
   await connectDB();
-  app.listen(PORT);
-}
+  next();
+});
 
-main();
+app.get("/", (req, res) => {
+  res.send("Hello World!");
+});
+
+app.get("/api", (req, res) => {
+  res.send("Hello World!");
+});
+
+app.use(cors());
+
+app.use("/api/events", router);
+
+app.listen(PORT, function() {
+  console.log(`Listening http://localhost:${PORT}`);
+});
