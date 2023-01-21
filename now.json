@@ -1,0 +1,22 @@
+{
+    "version": 2,
+    "builds": [
+      { "src": "src/**/*.ts", "use": "@vercel/node" }
+    ],
+    "routes": [
+      { "src": "/(.*)", "dest": "src/index.ts" }
+    ],
+    "env": {
+      "NODE_ENV": "production"
+    },
+    "build": {
+      "env": {
+        "TS_NODE_PROJECT": "./tsconfig.json"
+      },
+      "command": "tsc"
+    },
+    "start": {
+      "command": "node dist/index.js"
+    }
+  }
+  
