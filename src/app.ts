@@ -1,43 +1,35 @@
-import express from "express";
-// import morgan from "morgan";
 import cors from "cors";
+import * as bodyParser from "body-parser";
 
+import express from "express";
+
+import { database } from "./database";
 import eventsRoutes from "./routes/events.routes";
 
-// inicializaciones
-const app = express();
+export class Application {
+  public express!: express.Application;
 
-//middlewares
-// app.use(morgan("dev"));
-app.use(cors());
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
-
-app.use(eventsRoutes);
-
-app.use((req, res, next) => {
-  const error = new Error("Not found") as any;
-  error.status = 404;
-  next(error);
-});
-
-app.use(
-  (
-    error: { status: any; message: any },
-    req: any,
-    res: {
-      status: (arg0: any) => void;
-      json: (arg0: { error: { message: any } }) => void;
-    },
-    next: any
-  ) => {
-    res.status(error.status || 500);
-    res.json({
-      error: {
-        message: error.message,
-      },
-    });
+  constructor() {
+    this.initialize()
+      .then(() => process.stdout.write("Server started\n"))
+      .catch((err) => {
+        process.stderr.write(err.message);
+        process.exit(1);
+      });
   }
-);
 
-export default app;
+  protected async initialize(): Promise<void> {
+    await database();
+    const BODY_PARSER_LIMIT = "50mb";
+
+    this.express = express();
+    this.express.use(cors());
+    this.express.use(bodyParser.json({ limit: BODY_PARSER_LIMIT }));
+    this.express.use(
+      bodyParser.urlencoded({ limit: BODY_PARSER_LIMIT, extended: true })
+    );
+    this.express.use(eventsRoutes);
+  }
+}
+
+export default new Application().express;

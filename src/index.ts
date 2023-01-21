@@ -1,26 +1,10 @@
-import app from "./app";
-import { connectDB } from "./database";
-import cors from "cors";
-import router from "./routes/events.routes";
-const PORT = 4000;
+import 'dotenv/config';
+import 'reflect-metadata';
 
-app.use(async (req, res, next) => {
-  await connectDB();
-  next();
-});
+import application from './app';
 
-app.get("/", (req, res) => {
-  res.send("Hello World!");
-});
-
-app.get("/api", (req, res) => {
-  res.send("Hello World!");
-});
-
-app.use(cors());
-
-app.use("/api/events", router);
-
-app.listen(PORT, function() {
-  console.log(`Listening http://localhost:${PORT}`);
-});
+((): void => {
+  const server = application.listen(4000, (): boolean =>
+    process.stdout.write(`Server running at port http://localhost:4000\n`)
+  );
+})();
