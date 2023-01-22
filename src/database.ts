@@ -12,6 +12,7 @@ const options = {
 
 export const database = () =>
   mongoose
+    .set('strictQuery', true)
     .connect(connectionString, options)
     .then(() => process.stdout.write('MongoDB Connected!\n'))
     .catch((err) => {

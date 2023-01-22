@@ -8,17 +8,17 @@ import { getModelForClass, modelOptions, prop } from "@typegoose/typegoose";
 })
 class Event {
   @prop({ type: String, required: true, trim: true })
-  location: string;
+  location!: string;
   @prop({ type: String, required: true, trim: true })
-  date: string;
+  date!: string;
   @prop({ type: String, required: true, trim: true })
-  hour: string;
+  hour!: string;
   @prop({ type: String, required: true, trim: true })
-  cost: string;
+  cost!: string;
   @prop({ type: String, required: true, trim: true })
-  quota: string;
+  quota!: string;
   @prop({ type: String, required: true, trim: true })
-  email: string;
+  email!: string;
 }
 
 const EventModel = getModelForClass(Event);
